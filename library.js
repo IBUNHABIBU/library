@@ -8,8 +8,15 @@ class Book{
 }
 let book = new Book('Grow rich',"napolion",48);
 
-function addBook(name,author,page){
-    bookList.push(new Book(name,author,page));
-}
-
-console.log(bookList)
+const addForm = document.getElementById('form');
+console.log(addForm);
+addForm.addEventListener('submit',function(event){
+    event.preventDefault();
+    let valu = addForm.querySelector('#title').value;
+    
+    const authervalu = addForm.querySelector('#author').value;
+    
+    const pagesvalu = addForm.querySelector('#pages').value;
+    console.log(valu);
+   
+})
