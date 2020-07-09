@@ -10,6 +10,39 @@ class Book{
         this.pages = pages;
     }
 }
+
+class UserDisplay{
+    static displayBook(){
+        const books = Saver.getBooks();
+        books.forEach(element=>UserDisplay.addBookToLibrary(element));
+    }
+    static addBookToLibrary(book) {
+       
+        const bookDetails = document.getElementById('book-details');
+        const tableRow = document.createElement('tr');
+        tableRow.innerHTML = `
+                                <td>${book.title}</td>
+                                <td>${book.author}</td>
+                                <td>${book.pages}</td>
+                                <td><a href="#" class="btn btn-danger btn-sm delete">Delete Book</a></td>
+        `
+        bookDetails.appendChild(tableRow);
+    }
+   
+    static clearField(){
+         title.value = ' ';
+         author.value =  ' ';
+         pages.value = ' ';
+    }
+    
+    static deleteBook(element){
+        if(element.classList.contains('delete')){
+            element.parentElement.parentElement.remove();
+        }
+    }
+}
+
+
 class Saver {
     static getBooks(){
         let books;
@@ -32,31 +65,22 @@ class Saver {
     }
 }
 
-class UserDisplay{
-    static addBookToLibrary(book) {
-       
-        const bookDetails = document.getElementById('book-details');
-        const tableRow = document.createElement('tr');
-        tableRow.innerHTML = `
-                                <td>${book.title}</td>
-                                <td>${book.author}</td>
-                                <td>${book.pages}</td>
-                                <td><a href="#" class="btn btn-danger btn-sm delete">Delete Book</a></td>
-        `
-        bookDetails.appendChild(tableRow);
-    }
-    static displayBook(){
-        const books = Saver.getBooks();
-        books.forEach(element=>UserDisplay.addBookToLibrary(element))
-    }
-    static deleteBook(element){
-        if(element.classList.contains('delete')){
-            element.parentElement.parentElement.remove();
-        }
-    }
-    static clearField(){
-         title.value = ' ';
-         author.value =  ' ';
-         pages.value = ' ';
-    }
-}
+document.addEventListener('DOMContentLoaded',UserDisplay.displayBook);
+
+addBook.addEventListener('submit',(e)=>{
+    e.preventDefault()
+    const bookTitle = title.value;
+    const bookAuthor = author.value;
+    const bookPages = pages.value;
+    const book = new Book(bookTitle,bookAuthor,bookPages);
+    UserDisplay.addBookToLibrary(book);
+    Saver.addBook();
+    UserDisplay.clearField();
+});
+
+document.getElementById('book-details').addEventListener('click',(e)=>{
+    e.preventDefault();
+    UserDisplay.deleteBook(e.target);
+    Saver.removeBook(e.target.parentElement.previousElementSibling.textContent);
+alert("clicked")
+})
