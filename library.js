@@ -1,4 +1,4 @@
-let bookList = [];
+
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
@@ -14,7 +14,7 @@ class Book{
 class UserDisplay{
     static displayBook(){
         const books = Saver.getBooks();
-        books.forEach(element=>UserDisplay.addBookToLibrary(element));
+        books.forEach((book)=>UserDisplay.addBookToLibrary(book));
     }
     static addBookToLibrary(book) {
        
@@ -43,10 +43,16 @@ class UserDisplay{
 }
 
 
-class Saver {
+class Saver{
     static getBooks(){
         let books;
-        books = localStorage.getItem('books')===null ? [] : JSON.parse(localStorage.getItem('books'));
+        // books = localStorage.getItem('books')===null ? [] : JSON.parse(localStorage.getItem('books'));
+        // return books;
+        if(localStorage.getItem('books') === null){
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
         return books;
     }
     static addBook(book){
@@ -55,7 +61,7 @@ class Saver {
         localStorage.setItem('books',JSON.stringify(books));
     }
     static removeBook(title){
-        const book = Saver.getBooks();
+        const books = Saver.getBooks();
         books.forEach((element,index) => {
             if (element.title==title){
                 element.splice(index,1);
@@ -74,13 +80,13 @@ addBook.addEventListener('submit',(e)=>{
     const bookPages = pages.value;
     const book = new Book(bookTitle,bookAuthor,bookPages);
     UserDisplay.addBookToLibrary(book);
-    Saver.addBook();
+    Saver.addBook(book);
     UserDisplay.clearField();
 });
 
 document.getElementById('book-details').addEventListener('click',(e)=>{
-    e.preventDefault();
+    
     UserDisplay.deleteBook(e.target);
     Saver.removeBook(e.target.parentElement.previousElementSibling.textContent);
-alert("clicked")
+
 })
