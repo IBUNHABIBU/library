@@ -8,7 +8,6 @@ class Book{
         this.title = title;
         this.author = author;
         this.pages = pages;
-        
     }
 }
 
@@ -29,8 +28,20 @@ class UserDisplay{
         `
         bookDetails.appendChild(tableRow);
     }
-   
-    static clearField(){
+    // static showAlert(message,className){
+    //     const div = document.createElement('div');
+    //     div.className = `alert alert-${className} `;
+    //     div.appendChild(document.createTextNode(message));
+    //     const container = document.querySelector('.header-container');
+    //     const form = document.querySelector('#book-form');
+    //     container.insertBefore(div, form);
+    //     // vanish in 3 sec
+    //     setTimeout(() => {
+    //         document.querySelector('.alert').remove();
+    //     }, 3000);
+
+    // }
+    static clearFields(){
          title.value = ' ';
          author.value =  ' ';
          pages.value = ' ';
@@ -76,13 +87,27 @@ document.addEventListener('DOMContentLoaded',UserDisplay.displayBook);
 
 addBook.addEventListener('submit',(e)=>{
     e.preventDefault()
-    const bookTitle = title.value;
-    const bookAuthor = author.value;
-    const bookPages = pages.value;
-    const book = new Book(bookTitle,bookAuthor,bookPages);
-    UserDisplay.addBookToLibrary(book);
-    Saver.addBook(book);
-    UserDisplay.clearField();
+        const bookTitle = title.value;
+        const bookAuthor = author.value;
+        const bookPages = pages.value;
+   
+    //     checkRequired([bookTitle,bookAuthor,bookPages]);
+       // validate 
+    if(bookTitle === '' || bookAuthor === '' || bookPages === ''){
+      
+    } else {
+
+        // instatiate book
+        const book = new Book(bookTitle,bookAuthor,bookPages);
+
+        // add book to UI
+        UserDisplay.addBookToLibrary(book);
+        showAlert('Book added to the list','success');
+        // add book to Store 
+        Saver.addBook(book);
+        // Clear fields 
+        UserDisplay.clearFields();
+     }
 });
 
 document.getElementById('book-details').addEventListener('click',(e)=>{
@@ -91,3 +116,54 @@ document.getElementById('book-details').addEventListener('click',(e)=>{
     Saver.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
 })
+
+
+// validation
+
+// show input error message
+function showError(input , message){
+    const formControl = input.parentElement;
+    formControl.className = 'form-control error';
+    const small = formControl.querySelector('small');
+    small.innerText = message;
+   }
+   //show success outlite 
+   function showSuccess(input){
+       const formControl = input.parentElement;
+       formControl.className = 'form-control success'
+   }
+// check required fields 
+function checkRequired(inputArr){
+    inputArr.forEach(input => {
+        if (input.value.trim()===''){
+            // showError(input,`${input.id} is required`);  it gives result in small letter
+            // if we want to capitalize the word we use the method below
+            showError(input,`${getFieldName(input)} is required `);
+        } else {
+            showSuccess(input);
+        }
+    });
+}
+// Get field name 
+function getFieldName(input){
+    return input.id.charAt(0).toUpperCase()+input.id.slice(1)
+}
+// event listener
+// form.addEventListener('submit', function(e){
+//     e.preventDefault();
+  
+   
+// });
+function showAlert(message,className){
+    const div = document.createElement('div');
+    div.className = `alert alert-${className} `;
+    div.appendChild(document.createTextNode(message));
+    const container = document.querySelector('.header-container');
+    const form = document.querySelector('#book-form');
+    container.insertBefore(div, form);
+    // vanish in 3 sec
+    setTimeout(() => {
+        document.querySelector('.alert').remove();
+    }, 3000);
+
+}

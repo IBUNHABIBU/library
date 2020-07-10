@@ -1,4 +1,7 @@
-
+:root{
+    --success-color:#2ecc71;
+    --error-color:#e74c3c;
+}
 body{
     margin: 0;
     padding: 0;
@@ -57,4 +60,22 @@ body{
     font-size: 1.5rem;
     cursor: pointer;
     margin: 0 auto;
+}
+
+.form-control.success input{
+    border-color: var(--success-color);
+}
+.form-control.error input{
+    border-color: var(--error-color);
+}
+.form-control small{
+    color: var(--error-color);
+    position: absolute;
+    bottom: 0;
+    left:0;
+    visibility: hidden;
+    margin: 1rem;
+}
+.form-control.error small{
+    visibility: visible;
 }
