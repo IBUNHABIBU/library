@@ -3,11 +3,13 @@ const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
 const addBook = document.getElementById('book-form');
+const status = document.getElementById('status-btn');
 class Book{
     constructor(title,author,pages){
         this.title = title;
         this.author = author;
         this.pages = pages;
+        this.status = status;
     }
 }
 
@@ -17,30 +19,26 @@ class UserDisplay{
         books.forEach((book)=>UserDisplay.addBookToLibrary(book));
     }
     static addBookToLibrary(book) {
-       
+       let counter = 0;
         const bookDetails = document.getElementById('book-details');
         const tableRow = document.createElement('tr');
         tableRow.innerHTML = `
                                 <td>${book.title}</td>
                                 <td>${book.author}</td>
                                 <td>${book.pages}</td>
+                                <td>${book.pages}</td>
+                                <td>
+                                    <button class='btn read-btn' onclick='updateReadStatus(${counter})'>
+                                    ${book.status === 0 ? 'Not read' : 'Read'}
+                                    </button>
+                                </td>
                                 <td><a href="#" class="btn btn-danger btn-sm delete">Delete Book</a></td>
         `
         bookDetails.appendChild(tableRow);
     }
-    // static showAlert(message,className){
-    //     const div = document.createElement('div');
-    //     div.className = `alert alert-${className} `;
-    //     div.appendChild(document.createTextNode(message));
-    //     const container = document.querySelector('.header-container');
-    //     const form = document.querySelector('#book-form');
-    //     container.insertBefore(div, form);
-    //     // vanish in 3 sec
-    //     setTimeout(() => {
-    //         document.querySelector('.alert').remove();
-    //     }, 3000);
+    static readStatus(){
 
-    // }
+    }
     static clearFields(){
          title.value = ' ';
          author.value =  ' ';
@@ -131,8 +129,7 @@ function checkRequired(inputArr){
     inputArr.forEach(input => {
         // console.log(input);
         if (input.value.trim() ===''){
-            // showError(input,`${input.id} is required`);  it gives result in small letter
-            // if we want to capitalize the word we use the method below
+           
             
             showError(input,`${getFieldName(input)} is required `);
         } else {
@@ -147,12 +144,7 @@ function checkRequired(inputArr){
 function getFieldName(input){
     return input.id.charAt(0).toUpperCase()+input.id.slice(1)
 }
-// event listener
-// form.addEventListener('submit', function(e){
-//     e.preventDefault();
-  
-   
-// });
+
 function showAlert(message,className){
     const div = document.createElement('div');
     div.className = `alert alert-${className} `;
@@ -166,3 +158,11 @@ function showAlert(message,className){
     }, 3000);
 
 }
+function updateReadStatus(position) { // eslint-disable-line no-unused-vars
+    if (myLibrary[position].read === 0) {
+      myLibrary[position].read = 1;
+    } else {
+      myLibrary[position].read = 0;
+    }
+    // renderBook();
+  }
