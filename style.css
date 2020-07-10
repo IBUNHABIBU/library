@@ -21,7 +21,7 @@ body{
     display: flex;
     flex-direction: column;
     height: 30vh;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     position: absolute; 
     top:30%;
@@ -70,7 +70,7 @@ body{
 }
 .form-control small{
     color: var(--error-color);
-    position: absolute;
+    position: relative;
     bottom: 0;
     left:0;
     visibility: hidden;

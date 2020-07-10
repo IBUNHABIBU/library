@@ -85,7 +85,7 @@ class Saver{
 
 document.addEventListener('DOMContentLoaded',UserDisplay.displayBook);
 
-addBook.addEventListener('submit',(e)=>{
+document.getElementById('book-form').addEventListener('submit',(e)=>{
     e.preventDefault()
         const bookTitle = title.value;
         const bookAuthor = author.value;
@@ -93,8 +93,9 @@ addBook.addEventListener('submit',(e)=>{
    
     //     checkRequired([bookTitle,bookAuthor,bookPages]);
        // validate 
-    if(bookTitle === '' || bookAuthor === '' || bookPages === ''){
-      
+    if(title === '' || author === '' || pages === ''){
+        checkRequired([title,author,pages]);
+        
     } else {
 
         // instatiate book
@@ -135,14 +136,19 @@ function showError(input , message){
 // check required fields 
 function checkRequired(inputArr){
     inputArr.forEach(input => {
-        if (input.value.trim()===''){
+        // console.log(input);
+        if (input.value.trim() ===''){
             // showError(input,`${input.id} is required`);  it gives result in small letter
             // if we want to capitalize the word we use the method below
+            
             showError(input,`${getFieldName(input)} is required `);
         } else {
             showSuccess(input);
         }
     });
+    setTimeout(() => {
+        document.querySelector('.alert').remove();
+    }, 3000);
 }
 // Get field name 
 function getFieldName(input){
