@@ -8,6 +8,7 @@ class Book{
         this.title = title;
         this.author = author;
         this.pages = pages;
+        
     }
 }
 
