@@ -12,7 +12,7 @@ class Book{
 }
 
 class UserDisplay{
-    static displayBook(){
+    static renderBook(){
         const books = Saver.getBooks();
         books.forEach((book)=>UserDisplay.addBookToLibrary(book));
     }
@@ -57,33 +57,27 @@ class UserDisplay{
 
 class Saver{
     static getBooks(){
-        let books;
-        // books = localStorage.getItem('books')===null ? [] : JSON.parse(localStorage.getItem('books'));
-        // return books;
-        if(localStorage.getItem('books') === null){
-            books = [];
-        } else {
-            books = JSON.parse(localStorage.getItem('books'));
-        }
-        return books;
+        let myLibrary;
+        myLibrary = localStorage.getItem('myLibrary')===null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
+         return myLibrary;
     }
     static addBook(book){
-        const books = Saver.getBooks();
-        books.push(book);
-        localStorage.setItem('books',JSON.stringify(books));
+        const myLibrary = Saver.getBooks();
+        myLibrary.push(book);
+        localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
     }
     static removeBook(title){
-        const books = Saver.getBooks();
-        books.forEach((element,index) => {
+        const myLibrary = Saver.getBooks();
+        myLibrary.forEach((element,index) => {
             if (element.title==title){
                 element.splice(index,1);
             }
         });
-        localStorage.setItem('books',JSON.stringify(books));
+        localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
     }
 }
 
-document.addEventListener('DOMContentLoaded',UserDisplay.displayBook);
+document.addEventListener('DOMContentLoaded',UserDisplay.renderBook);
 
 document.getElementById('book-form').addEventListener('submit',(e)=>{
     e.preventDefault()
@@ -93,9 +87,8 @@ document.getElementById('book-form').addEventListener('submit',(e)=>{
    
     //     checkRequired([bookTitle,bookAuthor,bookPages]);
        // validate 
-    if(title === '' || author === '' || pages === ''){
+    if(bookTitle === '' || bookAuthor === '' || bookPages === ''){
         checkRequired([title,author,pages]);
-        
     } else {
 
         // instatiate book
