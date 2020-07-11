@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
     <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" 
+    integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
+     crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap" rel="stylesheet">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,8 +16,8 @@
     
     <div class="container mt-4">
         <h1 class="display-4 text-center text-primary">Books Library</h1>
+        <button href="#" id="add-new-book" class="btn btn-outline-primary"><i class="fas fa-plus"></i>     Add New Book</button>
     <div class="header-container">
-        
         <form action="" id="book-form" class="form mt-5">
             <div class="form-control">
                 <label for="title">Title</label>
@@ -41,11 +45,11 @@
                 <th>Title</th>
                 <th>Author</th>
                 <th>No of Pages</th>
-                <th>read status</th>
-                <th></th>
             </tr>
         </thead>
         <tbody id="book-details"></tbody>
+        
+        <button id="toggle-btn" onclick="toggle();">On</button>
     </table>
     </div>
     <script src="library.js"></script>

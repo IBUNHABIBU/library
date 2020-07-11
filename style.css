@@ -9,13 +9,22 @@ body{
     background-color: #f1f5f8;
 }
 .header-container{
-    display: flex;
+    /* display: flex; */
+    display: none;
     flex-direction: column;
     height: 30vh;
     margin: 0 auto;
     /* background: url(library.jpg) no-repeat; */
     background-size: cover;
+    /* transform: translate(-50%,-50%); */
+    /* background:white; */
+}
+#add-new-book{
+    width: 20%;
     
+    /* justify-content: center; */
+    position: relative;
+    left: 40%;
 }
 .form{
     display: flex;
@@ -78,4 +87,13 @@ body{
 }
 .form-control.error small{
     visibility: visible;
+}
+
+.action-btns{
+    border-top: 1px solid rgb(206, 206, 206);
+    padding-top: 8px;
+}
+
+.read-btn{
+    background-color: #45a049;
 }

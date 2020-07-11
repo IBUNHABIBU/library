@@ -13,6 +13,24 @@ class Book{
     }
 }
 
+// toggle button 
+let clicked = false;
+function toggle(){
+    if(!clicked){
+        clicked = true;
+        document.getElementById('toggle-btn').innerHTML = "Unread";
+        document.getElementById('output').innerHTML = "Unread";
+    } else {
+        clicked = false;
+        document.getElementById('toggle-btn').innerHTML = "read";
+        document.getElementById('output').innerHTML = "read";
+    }
+}
+
+
+
+
+
 class UserDisplay{
     static renderBook(){
         const books = Saver.getBooks();
@@ -26,13 +44,9 @@ class UserDisplay{
                                 <td>${book.title}</td>
                                 <td>${book.author}</td>
                                 <td>${book.pages}</td>
-                                <td>${book.pages}</td>
-                                <td>
-                                    <button class='btn read-btn' onclick='updateReadStatus(${counter})'>
-                                    ${book.status === 0 ? 'Not read' : 'Read'}
-                                    </button>
-                                </td>
-                                <td><a href="#" class="btn btn-danger btn-sm delete">Delete Book</a></td>
+                                <td>${book.status}</td>
+                                
+                                <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
         `
         bookDetails.appendChild(tableRow);
     }
@@ -67,7 +81,7 @@ class Saver{
     static removeBook(title){
         const myLibrary = Saver.getBooks();
         myLibrary.forEach((element,index) => {
-            if (element.title==title){
+            if (element.title===title){
                 element.splice(index,1);
             }
         });
@@ -90,7 +104,7 @@ document.getElementById('book-form').addEventListener('submit',(e)=>{
     } else {
 
         // instatiate book
-        const book = new Book(bookTitle,bookAuthor,bookPages);
+        const book = new Book(bookTitle,bookAuthor,bookPages,status);
 
         // add book to UI
         UserDisplay.addBookToLibrary(book);
@@ -158,11 +172,3 @@ function showAlert(message,className){
     }, 3000);
 
 }
-function updateReadStatus(position) { // eslint-disable-line no-unused-vars
-    if (myLibrary[position].read === 0) {
-      myLibrary[position].read = 1;
-    } else {
-      myLibrary[position].read = 0;
-    }
-    // renderBook();
-  }
