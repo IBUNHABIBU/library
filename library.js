@@ -146,7 +146,7 @@ document.getElementById('book-form').addEventListener('submit',(e)=>{
    
     //     checkRequired([bookTitle,bookAuthor,bookPages]);
        // validate 
-    if(bookTitle === '' || bookAuthor === '' || bookPages === ''){
+    if(bookTitle.trim() === '' || bookAuthor.trim() === '' || bookPages.trim() === ''){
         Validate.checkRequired([title,author,pages]);
     } else {
 
