@@ -50,9 +50,7 @@ class UserDisplay{
         `
         bookDetails.appendChild(tableRow);
     }
-    static readStatus(){
-
-    }
+   
     static clearFields(){
          title.value = ' ';
          author.value =  ' ';
@@ -89,6 +87,55 @@ class Saver{
     }
 }
 
+// validation
+class Validate{
+    // show input error message
+        static  showError(input , message){
+            const formControl = input.parentElement;
+            formControl.className = 'form-control error';
+            const small = formControl.querySelector('small');
+            small.innerText = message;
+        }
+        //show success outlite 
+        static  showSuccess(input){
+            const formControl = input.parentElement;
+            formControl.className = 'form-control success'
+        }
+        // check required fields 
+        static  checkRequired(inputArr){
+            inputArr.forEach(input => {
+                // console.log(input);
+                if (input.value.trim() ===''){
+                    Validate.showError(input,`${Validate.getFieldName(input)} is required `);
+                } else {
+                    Validate.showSuccess(input);
+                }
+            });
+            setTimeout(() => {
+                let small = document.querySelectorAll('.small-error');
+                small.forEach(node=>node.remove());
+            }, 3000);
+        }
+        // Get field name 
+        static  getFieldName(input){
+            return input.id.charAt(0).toUpperCase()+input.id.slice(1)
+        }
+    
+        static showAlert(message,className){
+            const div = document.createElement('div');
+            div.className = `alert alert-${className} `;
+            div.style.zIndex = '10';
+            div.appendChild(document.createTextNode(message));
+            const container = document.querySelector('.header-container');
+            const form = document.querySelector('#book-form');
+            container.insertBefore(div, form);
+            // vanish in 3 sec
+            setTimeout(() => {
+                document.querySelector('.alert').remove();
+            }, 3000);
+    
+        }
+    }
 document.addEventListener('DOMContentLoaded',UserDisplay.renderBook);
 
 document.getElementById('book-form').addEventListener('submit',(e)=>{
@@ -100,7 +147,7 @@ document.getElementById('book-form').addEventListener('submit',(e)=>{
     //     checkRequired([bookTitle,bookAuthor,bookPages]);
        // validate 
     if(bookTitle === '' || bookAuthor === '' || bookPages === ''){
-        checkRequired([title,author,pages]);
+        Validate.checkRequired([title,author,pages]);
     } else {
 
         // instatiate book
@@ -108,7 +155,7 @@ document.getElementById('book-form').addEventListener('submit',(e)=>{
 
         // add book to UI
         UserDisplay.addBookToLibrary(book);
-        showAlert('Book added to the list','success');
+        Validate.showAlert('Book added to the list','success');
         // add book to Store 
         Saver.addBook(book);
         // Clear fields 
@@ -124,51 +171,11 @@ document.getElementById('book-details').addEventListener('click',(e)=>{
 })
 
 
-// validation
-
-// show input error message
-function showError(input , message){
-    const formControl = input.parentElement;
-    formControl.className = 'form-control error';
-    const small = formControl.querySelector('small');
-    small.innerText = message;
-   }
-   //show success outlite 
-   function showSuccess(input){
-       const formControl = input.parentElement;
-       formControl.className = 'form-control success'
-   }
-// check required fields 
-function checkRequired(inputArr){
-    inputArr.forEach(input => {
-        // console.log(input);
-        if (input.value.trim() ===''){
-           
-            
-            showError(input,`${getFieldName(input)} is required `);
-        } else {
-            showSuccess(input);
-        }
-    });
-    setTimeout(() => {
-        document.querySelector('.alert').remove();
-    }, 3000);
-}
-// Get field name 
-function getFieldName(input){
-    return input.id.charAt(0).toUpperCase()+input.id.slice(1)
-}
-
-function showAlert(message,className){
-    const div = document.createElement('div');
-    div.className = `alert alert-${className} `;
-    div.appendChild(document.createTextNode(message));
-    const container = document.querySelector('.header-container');
-    const form = document.querySelector('#book-form');
-    container.insertBefore(div, form);
-    // vanish in 3 sec
-    setTimeout(() => {
-        document.querySelector('.alert').remove();
-    }, 3000);
-
-}
+// pop up form
+document.getElementById('add-new-book').addEventListener('click',function(){
+    document.querySelector('.header-container').style.display = 'flex';
+});
+document.querySelector('#hide').addEventListener('click', function(){
+    
+    document.querySelector('.header-container').style.display = 'none';
+})

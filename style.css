@@ -9,11 +9,10 @@ body{
     background-color: #f1f5f8;
 }
 .header-container{
-    /* display: flex; */
     display: none;
     flex-direction: column;
     height: 30vh;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     /* background: url(library.jpg) no-repeat; */
     background-size: cover;
     /* transform: translate(-50%,-50%); */
@@ -33,7 +32,7 @@ body{
     width: 60%;
     margin: 0 auto;
     position: absolute; 
-    top:30%;
+    top:40%;
     left:50%;
     transform: translate(-50%,-50%);
    color:white;
@@ -96,4 +95,16 @@ body{
 
 .read-btn{
     background-color: #45a049;
+}
+h2{
+    position: relative;
+    left: 35%;
+    top:1rem;
+    color: #007bff;
+}
+.btn-ghost{
+    color: #007bff;
+}
+.btn-ghost:hover{
+    color: #4b7097;
 }
