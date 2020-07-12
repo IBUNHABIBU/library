@@ -123,7 +123,7 @@ class Validate{
     
         static showAlert(message,className){
             const div = document.createElement('div');
-            div.className = `alert alert-${className} `;
+            div.className = `alert alert-${className} alert-success-style `;
             div.style.zIndex = '10';
             div.appendChild(document.createTextNode(message));
             const container = document.querySelector('.header-container');
@@ -174,8 +174,9 @@ document.getElementById('book-details').addEventListener('click',(e)=>{
 // pop up form
 document.getElementById('add-new-book').addEventListener('click',function(){
     document.querySelector('.header-container').style.display = 'flex';
+    document.querySelector('#add-new-book').style.display = 'none';
 });
 document.querySelector('#hide').addEventListener('click', function(){
-    
     document.querySelector('.header-container').style.display = 'none';
+    document.querySelector('#add-new-book').style.display = 'block';
 })

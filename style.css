@@ -20,7 +20,6 @@ body{
 }
 #add-new-book{
     width: 20%;
-    
     /* justify-content: center; */
     position: relative;
     left: 40%;
@@ -30,9 +29,8 @@ body{
     flex-direction: column;
     height: 30vh;
     width: 60%;
-    margin: 0 auto;
     position: absolute; 
-    top:40%;
+    top:35%;
     left:50%;
     transform: translate(-50%,-50%);
    color:white;
@@ -73,6 +71,10 @@ body{
 .form-control.success input{
     border-color: var(--success-color);
 }
+.alert-success-style{
+    position: relative;
+    top: -1rem;
+}
 .form-control.error input{
     border-color: var(--error-color);
 }
@@ -99,7 +101,7 @@ body{
 h2{
     position: relative;
     left: 35%;
-    top:1rem;
+    /* top:1rem; */
     color: #007bff;
 }
 .btn-ghost{
@@ -107,4 +109,8 @@ h2{
 }
 .btn-ghost:hover{
     color: #4b7097;
+}
+.table-div{
+position: relative;
+top:1.5rem;
 }
