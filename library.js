@@ -87,24 +87,19 @@ class Saver{
     }
 }
 
-// validation
 class Validate{
-    // show input error message
         static  showError(input , message){
             const formControl = input.parentElement;
             formControl.className = 'form-control error';
             const small = formControl.querySelector('small');
             small.innerText = message;
         }
-        //show success outlite 
         static  showSuccess(input){
             const formControl = input.parentElement;
             formControl.className = 'form-control success'
         }
-        // check required fields 
         static  checkRequired(inputArr){
             inputArr.forEach(input => {
-                // console.log(input);
                 if (input.value.trim() ===''){
                     Validate.showError(input,`${Validate.getFieldName(input)} is required `);
                 } else {
@@ -116,7 +111,6 @@ class Validate{
                 small.forEach(node=>node.remove());
             }, 3000);
         }
-        // Get field name 
         static  getFieldName(input){
             return input.id.charAt(0).toUpperCase()+input.id.slice(1)
         }
@@ -143,22 +137,15 @@ document.getElementById('book-form').addEventListener('submit',(e)=>{
         const bookTitle = title.value;
         const bookAuthor = author.value;
         const bookPages = pages.value;
-   
-    //     checkRequired([bookTitle,bookAuthor,bookPages]);
-       // validate 
+
     if(bookTitle.trim() === '' || bookAuthor.trim() === '' || bookPages.trim() === ''){
         Validate.checkRequired([title,author,pages]);
     } else {
 
-        // instatiate book
         const book = new Book(bookTitle,bookAuthor,bookPages,status);
-
-        // add book to UI
         UserDisplay.addBookToLibrary(book);
         Validate.showAlert('Book added to the list','success');
-        // add book to Store 
         Saver.addBook(book);
-        // Clear fields 
         UserDisplay.clearFields();
      }
 });
