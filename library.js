@@ -9,21 +9,23 @@ class Book{
         this.title = title;
         this.author = author;
         this.pages = pages;
-        this.status = status;
+        this.status = false;
     }
 }
 
 // toggle button 
-let clicked = false;
-function toggle(){
+let  clicked = false;
+function toggle(e){
+    // e.preventDefault();
+    // ?console.log(e.target);
+    // Book.status = !Book.status;
     if(!clicked){
-        clicked = true;
+        clicked= true;
         document.getElementById('toggle-btn').innerHTML = "Unread";
-        document.getElementById('output').innerHTML = "Unread";
+        
     } else {
         clicked = false;
         document.getElementById('toggle-btn').innerHTML = "read";
-        document.getElementById('output').innerHTML = "read";
     }
 }
 
@@ -44,7 +46,12 @@ class UserDisplay{
                                 <td>${book.title}</td>
                                 <td>${book.author}</td>
                                 <td>${book.pages}</td>
-                                <td>${book.status}</td>
+                            
+                                <td>
+                                <button id="toggle-btn" onclick="toggle();">Read</button>
+                                </td>
+    
+        
                                 
                                 <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
         `
@@ -154,7 +161,7 @@ document.getElementById('book-details').addEventListener('click',(e)=>{
     
     UserDisplay.deleteBook(e.target);
     Saver.removeBook(e.target.parentElement.previousElementSibling.textContent);
-
+    Validate.showAlert('Book Removed From the list', 'success');
 })
 
 
