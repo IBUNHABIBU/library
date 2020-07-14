@@ -133,9 +133,9 @@ document.addEventListener('DOMContentLoaded', UserDisplay.renderBook);
 
 document.getElementById('book-form').addEventListener('submit', (e) => {
   e.preventDefault();
-    const bookTitle = title.value;
-    const bookAuthor = author.value;
-    const bookPages = pages.value;
+  const bookTitle = title.value;
+  const bookAuthor = author.value;
+  const bookPages = pages.value;
   if (bookTitle.trim() === '' || bookAuthor.trim() === '' || bookPages.trim() === ''){
     Validate.checkRequired([title, author, pages]);
   } else {
