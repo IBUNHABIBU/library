@@ -124,8 +124,8 @@ class Validate {
     const container = document.querySelector('.header-container');
     const form = document.querySelector('#book-form');
     container.insertBefore(div, form);
-      setTimeout(() => {
-        document.querySelector('.alert').remove();
+    setTimeout(() => {
+      document.querySelector('.alert').remove();
       }, 3000);
     }
   }
