@@ -12,7 +12,7 @@ class Book {
   }
 }
 
-let  clicked = false;
+let clicked = false;
 function toggle() {
   if (!clicked) {
     clicked = true;
@@ -63,7 +63,7 @@ class UserDisplay {
 
 class Saver {
   static getBooks() {
-    let myLibrary;
+    const myLibrary;
     myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
     return myLibrary;
   }
