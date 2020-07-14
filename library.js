@@ -42,6 +42,11 @@ function addBookToLibrary(book) {
   bookDetails.appendChild(tableRow);
 }
 
+function getBooks() {
+  let myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
+  return myLibrary;
+}
+
 function renderBook() {
   const books = getBooks();
   books.forEach((book) => addBookToLibrary(book));
@@ -57,11 +62,6 @@ function deleteBook(element) {
   if (element.classList.contains('delete')) {
     element.parentElement.parentElement.remove();
   }
-}
-
-function getBooks() {
-  let myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
-  return myLibrary;
 }
 
 function addBook(book) {
@@ -83,7 +83,7 @@ function removeBook(title) {
 function getFieldName(input) {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
-  
+
 function showError(input, message) {
   const formControl = input.parentElement;
   formControl.className = 'form-control error';
