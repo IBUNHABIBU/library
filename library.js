@@ -24,14 +24,14 @@ function toggle() {
 }
 
 function renderBook() {
-const books = getBooks();
-books.forEach((book) => addBookToLibrary(book));
+  const books = getBooks();
+  books.forEach((book) => addBookToLibrary(book));
 }
 
 function addBookToLibrary(book) {
-const bookDetails = document.getElementById('book-details');
-const tableRow = document.createElement('tr');
-tableRow.innerHTML = `
+  const bookDetails = document.getElementById('book-details');
+  const tableRow = document.createElement('tr');
+  tableRow.innerHTML = `
                                 <td>${book.title}</td>
                                 <td>${book.author}</td>
                                 <td>${book.pages}</td>
@@ -44,13 +44,13 @@ tableRow.innerHTML = `
                                 
                                 <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
         `;
-bookDetails.appendChild(tableRow);
+  bookDetails.appendChild(tableRow);
 }
 
 function clearFields() {
- title.value = ' ';
- author.value = ' ';
- pages.value = ' ';
+  title.value = ' ';
+  author.value = ' ';
+  pages.value = ' ';
 }
 
 function deleteBook(element) {
@@ -65,19 +65,19 @@ function getBooks() {
 }
 
 function addBook(book) {
- const myLibrary = getBooks();
- myLibrary.push(book);
- localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+  const myLibrary = getBooks();
+  myLibrary.push(book);
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
 function removeBook(title) {
-const myLibrary = getBooks();
-myLibrary.forEach((element, index) => {
-  if (element.title === title) {
-    element.splice(index, 1);
-  }
-});
-localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+  const myLibrary = getBooks();
+  myLibrary.forEach((element, index) => {
+    if (element.title === title) {
+      element.splice(index, 1);
+    }
+  });
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
 function showError(input, message) {
