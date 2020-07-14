@@ -52,19 +52,19 @@ class UserDisplay {
 
   static clearFields() {
     title.value = ' ';
-    author.value =  ' ';
+    author.value = ' ';
     pages.value = ' ';
   }
-    
+ 
   static deleteBook(element) {
-    if(element.classList.contains('delete')) {
+    if (element.classList.contains('delete')) {
       element.parentElement.parentElement.remove();
     }
   }
 }
 
 class Saver {
-  static getBooks () {
+  static getBooks() {
     let myLibrary;
     myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
     return myLibrary;
@@ -73,14 +73,14 @@ class Saver {
   static addBook(book) {
     const myLibrary = Saver.getBooks();
     myLibrary.push(book);
-    localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 
   static removeBook(title) {
     const myLibrary = Saver.getBooks();
-    myLibrary.forEach((element,index) => {
+    myLibrary.forEach((element, index) => {
       if (element.title === title){
-        element.splice(index,1);
+        element.splice(index, 1);
       }
     });
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
@@ -104,17 +104,17 @@ class Validate {
   static  checkRequired(inputArr) {
     inputArr.forEach(input => {
       if (input.value.trim() ===''){
-        Validate.showError(input,`${Validate.getFieldName(input)} is required `);
+        Validate.showError(input, `${Validate.getFieldName(input)} is required `);
       } else {
         Validate.showSuccess(input);
       }
     });
     setTimeout(() => {
       let small = document.querySelectorAll('.small-error');
-      small.forEach(node=>node.remove());
+      small.forEach(node => node.remove());
     }, 3000);
   }
-  
+
 static  getFieldName(input) {
   return input.id.charAt(0).toUpperCase()+input.id.slice(1)
 }
@@ -136,12 +136,12 @@ static showAlert(message, className) {
 document.addEventListener('DOMContentLoaded', UserDisplay.renderBook);
 
 document.getElementById('book-form').addEventListener('submit', (e) => {
-    e.preventDefault ()
+    e.preventDefault()
       const bookTitle = title.value;
       const bookAuthor = author.value;
       const bookPages = pages.value;
     if (bookTitle.trim() === '' || bookAuthor.trim() === '' || bookPages.trim() === ''){
-        Validate.checkRequired([title,author,pages]);
+        Validate.checkRequired([title, author, pages]);
     } else {
       const book = new Book(bookTitle, bookAuthor, bookPages, status);
       UserDisplay.addBookToLibrary(book);
@@ -165,4 +165,4 @@ document.getElementById('add-new-book').addEventListener('click', function() {
 document.querySelector('#hide').addEventListener('click', function() {
   document.querySelector('.header-container').style.display = 'none';
   document.querySelector('#add-new-book').style.display = 'block';
-})
+});
