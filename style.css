@@ -1,14 +1,14 @@
-:root{
+:root {
     --success-color:#2ecc71;
     --error-color:#e74c3c;
 }
-body{
+body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     background-color: #f1f5f8;
 }
-.header-container{
+.header-container {
     display: none;
     flex-direction: column;
     height: 30vh;
@@ -18,13 +18,13 @@ body{
     /* transform: translate(-50%,-50%); */
     /* background:white; */
 }
-#add-new-book{
+#add-new-book {
     width: 20%;
     /* justify-content: center; */
     position: relative;
     left: 40%;
 }
-.form{
+.form {
     display: flex;
     flex-direction: column;
     height: 30vh;
@@ -37,19 +37,19 @@ body{
    /* background: #4caf50; */
    
 }
-.form-control{
+.form-control {
     width: 100%;
     font-size: 1rem;
     padding: 8px 0;
     margin: 8p 0;
     border-bottom: 1px solid #4caf50;
 }
-.form-control label{
+.form-control label {
     width: 100px;
     float: left;
     text-align: center;
 }
-.form-control input{
+.form-control input {
     border: none;
     outline: none;
     /* background: none; */
@@ -57,7 +57,7 @@ body{
     width: 70%;
     float: left;
 }
-.add-btn{
+.add-btn {
     width: 100%;
     background: white;
     border: none;
@@ -68,17 +68,17 @@ body{
     margin: 0 auto;
 }
 
-.form-control.success input{
+.form-control.success input {
     border-color: var(--success-color);
 }
-.alert-success-style{
+.alert-success-style {
     position: relative;
     top: -1rem;
 }
-.form-control.error input{
+.form-control.error input {
     border-color: var(--error-color);
 }
-.form-control small{
+.form-control small {
     color: var(--error-color);
     position: relative;
     bottom: 0;
@@ -86,31 +86,31 @@ body{
     visibility: hidden;
     margin: 1rem;
 }
-.form-control.error small{
+.form-control.error small {
     visibility: visible;
 }
 
-.action-btns{
+.action-btns {
     border-top: 1px solid rgb(206, 206, 206);
     padding-top: 8px;
 }
 
-.read-btn{
+.read-btn {
     background-color: #45a049;
 }
-h2{
+h2 {
     position: relative;
     left: 35%;
     /* top:1rem; */
     color: #007bff;
 }
-.btn-ghost{
+.btn-ghost {
     color: #007bff;
 }
-.btn-ghost:hover{
+.btn-ghost:hover {
     color: #4b7097;
 }
-.table-div{
+.table-div {
 position: relative;
 top:1.5rem;
 }
