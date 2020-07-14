@@ -2,43 +2,38 @@
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
-const addBook = document.getElementById('book-form');
 const status = document.getElementById('status-btn');
 class Book{
-    constructor(title,author,pages){
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.status = false;
-    }
+  constructor (title,author,pages){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = false;
+  }
 }
 
-// toggle button 
 let  clicked = false;
 function toggle(e){
-    // e.preventDefault();
-    // ?console.log(e.target);
-    // Book.status = !Book.status;
-    if(!clicked){
-        clicked= true;
-        document.getElementById('toggle-btn').innerHTML = "Unread";
+  if(!clicked){
+    clicked= true;
+    document.getElementById('toggle-btn').innerHTML = "Unread";
         
-    } else {
-        clicked = false;
-        document.getElementById('toggle-btn').innerHTML = "read";
-    }
+  } else {
+    clicked = false;
+    document.getElementById('toggle-btn').innerHTML = "read";
+  }
 }
 
 class UserDisplay{
-    static renderBook(){
-        const books = Saver.getBooks();
-        books.forEach((book)=>UserDisplay.addBookToLibrary(book));
-    }
-    static addBookToLibrary(book) {
-       let counter = 0;
-        const bookDetails = document.getElementById('book-details');
-        const tableRow = document.createElement('tr');
-        tableRow.innerHTML = `
+  static renderBook(){
+    const books = Saver.getBooks();
+    books.forEach((book)=>UserDisplay.addBookToLibrary(book));
+  }
+  static addBookToLibrary(book) {
+    let counter = 0;
+    const bookDetails = document.getElementById('book-details');
+    const tableRow = document.createElement('tr');
+    tableRow.innerHTML = `
                                 <td>${book.title}</td>
                                 <td>${book.author}</td>
                                 <td>${book.pages}</td>
@@ -51,56 +46,56 @@ class UserDisplay{
                                 
                                 <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
         `
-        bookDetails.appendChild(tableRow);
-    }
+    bookDetails.appendChild(tableRow);
+  }
    
     static clearFields(){
-         title.value = ' ';
-         author.value =  ' ';
-         pages.value = ' ';
+      title.value = ' ';
+      author.value =  ' ';
+      pages.value = ' ';
     }
     
     static deleteBook(element){
-        if(element.classList.contains('delete')){
-            element.parentElement.parentElement.remove();
-        }
+      if(element.classList.contains('delete')){
+        element.parentElement.parentElement.remove();
+      }
     }
 }
 
 class Saver{
-    static getBooks(){
-        let myLibrary;
-        myLibrary = localStorage.getItem('myLibrary')===null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
-         return myLibrary;
-    }
-    static addBook(book){
-        const myLibrary = Saver.getBooks();
-        myLibrary.push(book);
-        localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
-    }
-    static removeBook(title){
-        const myLibrary = Saver.getBooks();
-        myLibrary.forEach((element,index) => {
-            if (element.title===title){
-                element.splice(index,1);
-            }
-        });
-        localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
-    }
+  static getBooks(){
+    let myLibrary;
+    myLibrary = localStorage.getItem('myLibrary')===null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
+    return myLibrary;
+  }
+  static addBook(book){
+      const myLibrary = Saver.getBooks();
+      myLibrary.push(book);
+      localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
+  }
+  static removeBook(title){
+      const myLibrary = Saver.getBooks();
+      myLibrary.forEach((element,index) => {
+        if (element.title===title){
+          element.splice(index,1);
+        }
+      });
+      localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
+  }
 }
 
 class Validate{
-        static  showError(input , message){
-            const formControl = input.parentElement;
-            formControl.className = 'form-control error';
-            const small = formControl.querySelector('small');
-            small.innerText = message;
-        }
-        static  showSuccess(input){
-            const formControl = input.parentElement;
-            formControl.className = 'form-control success'
-        }
-        static  checkRequired(inputArr){
+  static  showError(input , message){
+    const formControl = input.parentElement;
+    formControl.className = 'form-control error';
+    const small = formControl.querySelector('small');
+    small.innerText = message;
+  }
+    static  showSuccess(input){
+      const formControl = input.parentElement;
+      formControl.className = 'form-control success'
+    }
+    static  checkRequired(inputArr){
             inputArr.forEach(input => {
                 if (input.value.trim() ===''){
                     Validate.showError(input,`${Validate.getFieldName(input)} is required `);
@@ -112,7 +107,7 @@ class Validate{
                 let small = document.querySelectorAll('.small-error');
                 small.forEach(node=>node.remove());
             }, 3000);
-        }
+    }
         static  getFieldName(input){
             return input.id.charAt(0).toUpperCase()+input.id.slice(1)
         }
