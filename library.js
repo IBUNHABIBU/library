@@ -53,7 +53,7 @@ class UserDisplay {
     author.value = ' ';
     pages.value = ' ';
   }
- 
+
   static deleteBook(element) {
     if (element.classList.contains('delete')) {
       element.parentElement.parentElement.remove();
@@ -86,19 +86,19 @@ class Saver {
 }
 
 class Validate {
-  static  showError(input, message) {
+  static showError(input, message) {
     const formControl = input.parentElement;
     formControl.className = 'form-control error';
     const small = formControl.querySelector('small');
     small.innerText = message;
   }
 
-  static  showSuccess(input) {
+  static showSuccess(input) {
       const formControl = input.parentElement;
       formControl.className = 'form-control success'
   }
 
-  static  checkRequired(inputArr) {
+  static checkRequired(inputArr) {
     inputArr.forEach(input => {
       if (input.value.trim() ==='') {
         Validate.showError(input, `${Validate.getFieldName(input)} is required `);
@@ -112,7 +112,7 @@ class Validate {
     }, 3000);
   }
 
-  static  getFieldName(input) {
+  static getFieldName(input) {
   return input.id.charAt(0).toUpperCase()+input.id.slice(1)
   }
     
