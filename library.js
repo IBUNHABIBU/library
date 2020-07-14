@@ -29,10 +29,6 @@ function toggle(e){
     }
 }
 
-
-
-
-
 class UserDisplay{
     static renderBook(){
         const books = Saver.getBooks();
@@ -70,7 +66,6 @@ class UserDisplay{
         }
     }
 }
-
 
 class Saver{
     static getBooks(){
@@ -163,7 +158,6 @@ document.getElementById('book-details').addEventListener('click',(e)=>{
     Saver.removeBook(e.target.parentElement.previousElementSibling.textContent);
     Validate.showAlert('Book Removed From the list', 'success');
 })
-
 
 // pop up form
 document.getElementById('add-new-book').addEventListener('click',function(){
