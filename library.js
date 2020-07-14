@@ -93,17 +93,17 @@ function showSuccess(input) {
 }
 
 function checkRequired(inputArr) {
-inputArr.forEach(input => {
-  if (input.value.trim() === '') {
-    showError(input, `${getFieldName(input)} is required `);
-  } else {
-    showSuccess(input);
-  }
-});
-setTimeout(() => {
-  const small = document.querySelectorAll('.small-error');
-  small.forEach(node => node.remove());
-}, 3000);
+  inputArr.forEach(input => {
+    if (input.value.trim() === '') {
+      showError(input, `${getFieldName(input)} is required `);
+    } else {
+      showSuccess(input);
+    }
+  });
+  setTimeout(() => {
+    const small = document.querySelectorAll('.small-error');
+    small.forEach(node => node.remove());
+  }, 3000);
 }
 
 function getFieldName(input) {
