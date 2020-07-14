@@ -15,7 +15,7 @@ class Book {
 let  clicked = false;
 function toggle() {
   if(!clicked) {
-    clicked= true;
+    clicked = true;
     document.getElementById('toggle-btn').innerHTML = 'unread';
         
   } else {
@@ -27,7 +27,7 @@ function toggle() {
 class UserDisplay {
   static renderBook() {
     const books = Saver.getBooks();
-    books.forEach((book)=>UserDisplay.addBookToLibrary(book));
+    books.forEach((book) => UserDisplay.addBookToLibrary(book));
   }
   static addBookToLibrary(book) {
     let counter = 0;
@@ -65,7 +65,7 @@ class UserDisplay {
 class Saver {
   static getBooks () {
     let myLibrary;
-    myLibrary = localStorage.getItem('myLibrary')===null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
+    myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
     return myLibrary;
   }
   static addBook(book) {
@@ -76,16 +76,16 @@ class Saver {
   static removeBook(title) {
       const myLibrary = Saver.getBooks();
       myLibrary.forEach((element,index) => {
-        if (element.title===title){
+        if (element.title === title){
           element.splice(index,1);
         }
       });
-      localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
+      localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 }
 
 class Validate {
-  static  showError(input , message) {
+  static  showError(input, message) {
     const formControl = input.parentElement;
     formControl.className = 'form-control error';
     const small = formControl.querySelector('small');
