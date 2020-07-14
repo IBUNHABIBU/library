@@ -23,11 +23,6 @@ function toggle() {
   }
 }
 
-function renderBook() {
-  const books = getBooks();
-  books.forEach((book) => addBookToLibrary(book));
-}
-
 function addBookToLibrary(book) {
   const bookDetails = document.getElementById('book-details');
   const tableRow = document.createElement('tr');
@@ -45,6 +40,11 @@ function addBookToLibrary(book) {
                                 <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
         `;
   bookDetails.appendChild(tableRow);
+}
+
+function renderBook() {
+  const books = getBooks();
+  books.forEach((book) => addBookToLibrary(book));
 }
 
 function clearFields() {
@@ -80,6 +80,10 @@ function removeBook(title) {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
 }
 
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+  
 function showError(input, message) {
   const formControl = input.parentElement;
   formControl.className = 'form-control error';
@@ -104,10 +108,6 @@ function checkRequired(inputArr) {
     const small = document.querySelectorAll('.small-error');
     small.forEach(node => node.remove());
   }, 3000);
-}
-
-function getFieldName(input) {
-  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
 
 function showAlert(message, className) {
