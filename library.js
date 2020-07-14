@@ -23,15 +23,15 @@ function toggle() {
   }
 }
 
-  function renderBook() {
-    const books = getBooks();
-    books.forEach((book) => addBookToLibrary(book));
-  }
+function renderBook() {
+const books = getBooks();
+books.forEach((book) => addBookToLibrary(book));
+}
 
-  function addBookToLibrary(book) {
-    const bookDetails = document.getElementById('book-details');
-    const tableRow = document.createElement('tr');
-    tableRow.innerHTML = `
+function addBookToLibrary(book) {
+const bookDetails = document.getElementById('book-details');
+const tableRow = document.createElement('tr');
+tableRow.innerHTML = `
                                 <td>${book.title}</td>
                                 <td>${book.author}</td>
                                 <td>${book.pages}</td>
@@ -44,84 +44,84 @@ function toggle() {
                                 
                                 <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
         `;
-    bookDetails.appendChild(tableRow);
-  }
+bookDetails.appendChild(tableRow);
+}
 
-  function clearFields() {
-    title.value = ' ';
-    author.value = ' ';
-    pages.value = ' ';
-  }
+function clearFields() {
+ title.value = ' ';
+ author.value = ' ';
+ pages.value = ' ';
+}
 
-  function deleteBook(element) {
-    if (element.classList.contains('delete')) {
-      element.parentElement.parentElement.remove();
-    }
-  }
+function deleteBook(element) {
+if (element.classList.contains('delete')) {
+    element.parentElement.parentElement.remove();
+}
+}
 
-  function getBooks() {
-    let myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
-    return myLibrary;
-  }
+function getBooks() {
+ let myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
+ return myLibrary;
+}
 
-  function addBook(book) {
-    const myLibrary = Saver.getBooks();
-    myLibrary.push(book);
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
-  }
+function addBook(book) {
+ const myLibrary = getBooks();
+ myLibrary.push(book);
+ localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
 
-  function removeBook(title) {
-    const myLibrary = getBooks();
-    myLibrary.forEach((element, index) => {
-      if (element.title === title) {
-        element.splice(index, 1);
-      }
-    });
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+function removeBook(title) {
+const myLibrary = getBooks();
+myLibrary.forEach((element, index) => {
+  if (element.title === title) {
+    element.splice(index, 1);
   }
+});
+localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
 
-  function showError(input, message) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control error';
-    const small = formControl.querySelector('small');
-    small.innerText = message;
-  }
+function showError(input, message) {
+  const formControl = input.parentElement;
+  formControl.className = 'form-control error';
+  const small = formControl.querySelector('small');
+  small.innerText = message;
+}
 
-  function showSuccess(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control success';
-  }
+function showSuccess(input) {
+  const formControl = input.parentElement;
+  formControl.className = 'form-control success';
+}
 
-  function checkRequired(inputArr) {
-    inputArr.forEach(input => {
-      if (input.value.trim() === '') {
-        showError(input, `${getFieldName(input)} is required `);
-      } else {
-        showSuccess(input);
-      }
-    });
-    setTimeout(() => {
-      const small = document.querySelectorAll('.small-error');
-      small.forEach(node => node.remove());
-    }, 3000);
+function checkRequired(inputArr) {
+inputArr.forEach(input => {
+  if (input.value.trim() === '') {
+    showError(input, `${getFieldName(input)} is required `);
+  } else {
+    showSuccess(input);
   }
+});
+setTimeout(() => {
+  const small = document.querySelectorAll('.small-error');
+  small.forEach(node => node.remove());
+}, 3000);
+}
 
-  function getFieldName(input) {
-    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
-  }
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
 
-  function showAlert(message, className) {
-    const div = document.createElement('div');
-    div.className = `alert alert-${className} alert-success-style `;
-    div.style.zIndex = '10';
-    div.appendChild(document.createTextNode(message));
-    const container = document.querySelector('.header-container');
-    const form = document.querySelector('#book-form');
-    container.insertBefore(div, form);
-    setTimeout(() => {
-      document.querySelector('.alert').remove();
-    }, 3000);
-  }
+function showAlert(message, className) {
+  const div = document.createElement('div');
+  div.className = `alert alert-${className} alert-success-style `;
+  div.style.zIndex = '10';
+  div.appendChild(document.createTextNode(message));
+  const container = document.querySelector('.header-container');
+  const form = document.querySelector('#book-form');
+  container.insertBefore(div, form);
+  setTimeout(() => {
+    document.querySelector('.alert').remove();
+  }, 3000);
+}
 
 document.addEventListener('DOMContentLoaded', renderBook);
 
