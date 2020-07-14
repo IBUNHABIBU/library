@@ -63,8 +63,7 @@ class UserDisplay {
 
 class Saver {
   static getBooks() {
-    const myLibrary;
-    myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
+    let myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
     return myLibrary;
   }
 
