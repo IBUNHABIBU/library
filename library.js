@@ -54,14 +54,14 @@ function clearFields() {
 }
 
 function deleteBook(element) {
-if (element.classList.contains('delete')) {
+  if (element.classList.contains('delete')) {
     element.parentElement.parentElement.remove();
-}
+  }
 }
 
 function getBooks() {
- let myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
- return myLibrary;
+  let myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
+  return myLibrary;
 }
 
 function addBook(book) {
