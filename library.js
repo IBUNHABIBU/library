@@ -24,14 +24,12 @@ function toggle() {
 }
 
 class UserDisplay {
-
   static renderBook() {
     const books = Saver.getBooks();
     books.forEach((book) => UserDisplay.addBookToLibrary(book));
   }
 
   static addBookToLibrary(book) {
-
     const bookDetails = document.getElementById('book-details');
     const tableRow = document.createElement('tr');
     tableRow.innerHTML = `
@@ -79,7 +77,7 @@ class Saver {
   static removeBook(title) {
     const myLibrary = Saver.getBooks();
     myLibrary.forEach((element, index) => {
-      if (element.title === title){
+      if (element.title === title) {
         element.splice(index, 1);
       }
     });
@@ -88,7 +86,6 @@ class Saver {
 }
 
 class Validate {
-
   static  showError(input, message) {
     const formControl = input.parentElement;
     formControl.className = 'form-control error';
@@ -103,7 +100,7 @@ class Validate {
 
   static  checkRequired(inputArr) {
     inputArr.forEach(input => {
-      if (input.value.trim() ===''){
+      if (input.value.trim() ==='') {
         Validate.showError(input, `${Validate.getFieldName(input)} is required `);
       } else {
         Validate.showSuccess(input);
