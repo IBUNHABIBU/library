@@ -24,10 +24,12 @@ function toggle() {
 }
 
 class UserDisplay {
+
   static renderBook() {
     const books = Saver.getBooks();
     books.forEach((book) => UserDisplay.addBookToLibrary(book));
   }
+
   static addBookToLibrary(book) {
 
     const bookDetails = document.getElementById('book-details');
@@ -67,11 +69,13 @@ class Saver {
     myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
     return myLibrary;
   }
+
   static addBook(book) {
     const myLibrary = Saver.getBooks();
     myLibrary.push(book);
     localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
   }
+
   static removeBook(title) {
     const myLibrary = Saver.getBooks();
     myLibrary.forEach((element,index) => {
@@ -84,16 +88,19 @@ class Saver {
 }
 
 class Validate {
+
   static  showError(input, message) {
     const formControl = input.parentElement;
     formControl.className = 'form-control error';
     const small = formControl.querySelector('small');
     small.innerText = message;
   }
+
   static  showSuccess(input) {
       const formControl = input.parentElement;
       formControl.className = 'form-control success'
   }
+
   static  checkRequired(inputArr) {
     inputArr.forEach(input => {
       if (input.value.trim() ===''){
@@ -107,9 +114,10 @@ class Validate {
       small.forEach(node=>node.remove());
     }, 3000);
   }
+  
 static  getFieldName(input) {
   return input.id.charAt(0).toUpperCase()+input.id.slice(1)
-        }
+}
     
 static showAlert(message, className) {
   const div = document.createElement('div');
