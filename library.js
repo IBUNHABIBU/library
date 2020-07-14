@@ -43,7 +43,7 @@ function addBookToLibrary(book) {
 }
 
 function getBooks() {
-  let myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
+  const myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
   return myLibrary;
 }
 
