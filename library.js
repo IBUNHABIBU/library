@@ -23,13 +23,12 @@ function toggle() {
   }
 }
 
-class UserDisplay {
-  static renderBook() {
-    const books = Saver.getBooks();
-    books.forEach((book) => UserDisplay.addBookToLibrary(book));
+  function renderBook() {
+    const books = getBooks();
+    books.forEach((book) => addBookToLibrary(book));
   }
 
-  static addBookToLibrary(book) {
+  function addBookToLibrary(book) {
     const bookDetails = document.getElementById('book-details');
     const tableRow = document.createElement('tr');
     tableRow.innerHTML = `
@@ -48,33 +47,31 @@ class UserDisplay {
     bookDetails.appendChild(tableRow);
   }
 
-  static clearFields() {
+  function clearFields() {
     title.value = ' ';
     author.value = ' ';
     pages.value = ' ';
   }
 
-  static deleteBook(element) {
+  function deleteBook(element) {
     if (element.classList.contains('delete')) {
       element.parentElement.parentElement.remove();
     }
   }
-}
 
-class Saver {
-  static getBooks() {
+  function getBooks() {
     let myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
     return myLibrary;
   }
 
-  static addBook(book) {
+  function addBook(book) {
     const myLibrary = Saver.getBooks();
     myLibrary.push(book);
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
 
-  static removeBook(title) {
-    const myLibrary = Saver.getBooks();
+  function removeBook(title) {
+    const myLibrary = getBooks();
     myLibrary.forEach((element, index) => {
       if (element.title === title) {
         element.splice(index, 1);
@@ -82,27 +79,25 @@ class Saver {
     });
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   }
-}
 
-class Validate {
-  static showError(input, message) {
+  function showError(input, message) {
     const formControl = input.parentElement;
     formControl.className = 'form-control error';
     const small = formControl.querySelector('small');
     small.innerText = message;
   }
 
-  static showSuccess(input) {
+  function showSuccess(input) {
     const formControl = input.parentElement;
     formControl.className = 'form-control success';
   }
 
-  static checkRequired(inputArr) {
+  function checkRequired(inputArr) {
     inputArr.forEach(input => {
       if (input.value.trim() === '') {
-        Validate.showError(input, `${Validate.getFieldName(input)} is required `);
+        showError(input, `${getFieldName(input)} is required `);
       } else {
-        Validate.showSuccess(input);
+        showSuccess(input);
       }
     });
     setTimeout(() => {
@@ -111,11 +106,11 @@ class Validate {
     }, 3000);
   }
 
-  static getFieldName(input) {
+  function getFieldName(input) {
     return input.id.charAt(0).toUpperCase() + input.id.slice(1);
   }
 
-  static showAlert(message, className) {
+  function showAlert(message, className) {
     const div = document.createElement('div');
     div.className = `alert alert-${className} alert-success-style `;
     div.style.zIndex = '10';
@@ -127,8 +122,8 @@ class Validate {
       document.querySelector('.alert').remove();
     }, 3000);
   }
-}
-document.addEventListener('DOMContentLoaded', UserDisplay.renderBook);
+
+document.addEventListener('DOMContentLoaded', renderBook);
 
 document.getElementById('book-form').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -136,20 +131,20 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
   const bookAuthor = author.value;
   const bookPages = pages.value;
   if (bookTitle.trim() === '' || bookAuthor.trim() === '' || bookPages.trim() === '') {
-    Validate.checkRequired([title, author, pages]);
+    checkRequired([title, author, pages]);
   } else {
     const book = new Book(bookTitle, bookAuthor, bookPages, status);
-    UserDisplay.addBookToLibrary(book);
-    Validate.showAlert('Book added to the list', 'success');
-    Saver.addBook(book);
-    UserDisplay.clearFields();
+    addBookToLibrary(book);
+    showAlert('Book added to the list', 'success');
+    addBook(book);
+    clearFields();
   }
 });
 
 document.getElementById('book-details').addEventListener('click', (e) => {
-  UserDisplay.deleteBook(e.target);
-  Saver.removeBook(e.target.parentElement.previousElementSibling.textContent);
-  Validate.showAlert('Book Removed From the list', 'success');
+  deleteBook(e.target);
+  removeBook(e.target.parentElement.previousElementSibling.textContent);
+  showAlert('Book Removed From the list', 'success');
 });
 
 // pop up form
