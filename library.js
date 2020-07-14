@@ -12,16 +12,16 @@ class Book {
   }
 }
 
-let clicked = false;
-function toggle() {
-  if (!clicked) {
-    clicked = true;
-    document.getElementById('toggle-btn').innerHTML = 'unread';
-  } else {
-    clicked = false;
-    document.getElementById('toggle-btn').innerHTML = 'read';
-  }
-}
+// let clicked = false;
+// function toggle() {
+//   if (!clicked) {
+//     clicked = true;
+//     document.getElementById('toggle-btn').innerHTML = 'unread';
+//   } else {
+//     clicked = false;
+//     document.getElementById('toggle-btn').innerHTML = 'read';
+//   }
+// }
 
 function addBookToLibrary(book) {
   const bookDetails = document.getElementById('book-details');
