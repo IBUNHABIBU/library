@@ -132,19 +132,19 @@ static showAlert(message, className) {
 document.addEventListener('DOMContentLoaded', UserDisplay.renderBook);
 
 document.getElementById('book-form').addEventListener('submit', (e) => {
-    e.preventDefault()
-      const bookTitle = title.value;
-      const bookAuthor = author.value;
-      const bookPages = pages.value;
-    if (bookTitle.trim() === '' || bookAuthor.trim() === '' || bookPages.trim() === ''){
-        Validate.checkRequired([title, author, pages]);
-    } else {
-      const book = new Book(bookTitle, bookAuthor, bookPages, status);
-      UserDisplay.addBookToLibrary(book);
-      Validate.showAlert('Book added to the list', 'success');
-      Saver.addBook(book);
-      UserDisplay.clearFields();
-    }
+  e.preventDefault();
+    const bookTitle = title.value;
+    const bookAuthor = author.value;
+    const bookPages = pages.value;
+  if (bookTitle.trim() === '' || bookAuthor.trim() === '' || bookPages.trim() === ''){
+    Validate.checkRequired([title, author, pages]);
+  } else {
+    const book = new Book(bookTitle, bookAuthor, bookPages, status);
+    UserDisplay.addBookToLibrary(book);
+    Validate.showAlert('Book added to the list', 'success');
+    Saver.addBook(book);
+    UserDisplay.clearFields();
+  }
 });
 
 document.getElementById('book-details').addEventListener('click', (e) => {
