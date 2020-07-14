@@ -113,7 +113,7 @@ class Validate {
   }
 
   static getFieldName(input) {
-  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
   }
 
   static showAlert(message, className) {
