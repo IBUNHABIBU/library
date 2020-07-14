@@ -3,8 +3,8 @@ const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
 const status = document.getElementById('status-btn');
-class Book{
-  constructor (title,author,pages){
+class Book {
+  constructor (title, author, pages){
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -13,23 +13,23 @@ class Book{
 }
 
 let  clicked = false;
-function toggle(e){
+function toggle (){
   if(!clicked){
     clicked= true;
-    document.getElementById('toggle-btn').innerHTML = "Unread";
+    document.getElementById('toggle-btn').innerHTML = 'unread';
         
   } else {
     clicked = false;
-    document.getElementById('toggle-btn').innerHTML = "read";
+    document.getElementById('toggle-btn').innerHTML = 'read';
   }
 }
 
-class UserDisplay{
-  static renderBook(){
+class UserDisplay {
+  static renderBook() {
     const books = Saver.getBooks();
     books.forEach((book)=>UserDisplay.addBookToLibrary(book));
   }
-  static addBookToLibrary(book) {
+  static addBookToLibrary (book) {
     let counter = 0;
     const bookDetails = document.getElementById('book-details');
     const tableRow = document.createElement('tr');
@@ -49,31 +49,31 @@ class UserDisplay{
     bookDetails.appendChild(tableRow);
   }
    
-    static clearFields(){
+    static clearFields () {
       title.value = ' ';
       author.value =  ' ';
       pages.value = ' ';
     }
     
-    static deleteBook(element){
-      if(element.classList.contains('delete')){
+    static deleteBook(element) {
+      if(element.classList.contains('delete')) {
         element.parentElement.parentElement.remove();
       }
     }
 }
 
-class Saver{
-  static getBooks(){
+class Saver {
+  static getBooks () {
     let myLibrary;
     myLibrary = localStorage.getItem('myLibrary')===null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
     return myLibrary;
   }
-  static addBook(book){
+  static addBook (book) {
       const myLibrary = Saver.getBooks();
       myLibrary.push(book);
       localStorage.setItem('myLibrary',JSON.stringify(myLibrary));
   }
-  static removeBook(title){
+  static removeBook(title) {
       const myLibrary = Saver.getBooks();
       myLibrary.forEach((element,index) => {
         if (element.title===title){
@@ -84,18 +84,18 @@ class Saver{
   }
 }
 
-class Validate{
-  static  showError(input , message){
+class Validate {
+  static  showError (input , message) {
     const formControl = input.parentElement;
     formControl.className = 'form-control error';
     const small = formControl.querySelector('small');
     small.innerText = message;
   }
-    static  showSuccess(input){
+    static  showSuccess (input) {
       const formControl = input.parentElement;
       formControl.className = 'form-control success'
     }
-    static  checkRequired(inputArr){
+    static  checkRequired (inputArr) {
             inputArr.forEach(input => {
                 if (input.value.trim() ===''){
                     Validate.showError(input,`${Validate.getFieldName(input)} is required `);
@@ -108,11 +108,11 @@ class Validate{
                 small.forEach(node=>node.remove());
             }, 3000);
     }
-        static  getFieldName(input){
+        static  getFieldName (input) {
             return input.id.charAt(0).toUpperCase()+input.id.slice(1)
         }
     
-        static showAlert(message,className){
+        static showAlert (message, className) {
             const div = document.createElement('div');
             div.className = `alert alert-${className} alert-success-style `;
             div.style.zIndex = '10';
@@ -120,17 +120,16 @@ class Validate{
             const container = document.querySelector('.header-container');
             const form = document.querySelector('#book-form');
             container.insertBefore(div, form);
-            // vanish in 3 sec
             setTimeout(() => {
                 document.querySelector('.alert').remove();
             }, 3000);
     
         }
     }
-document.addEventListener('DOMContentLoaded',UserDisplay.renderBook);
+document.addEventListener('DOMContentLoaded', UserDisplay.renderBook);
 
 document.getElementById('book-form').addEventListener('submit',(e)=>{
-    e.preventDefault()
+    e.preventDefault ()
         const bookTitle = title.value;
         const bookAuthor = author.value;
         const bookPages = pages.value;
