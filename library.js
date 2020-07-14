@@ -130,7 +130,6 @@ static showAlert(message, className) {
     setTimeout(() => {
       document.querySelector('.alert').remove();
     }, 3000);
-    
   }
 }
 document.addEventListener('DOMContentLoaded', UserDisplay.renderBook);
