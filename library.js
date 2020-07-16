@@ -25,18 +25,18 @@ function addBookToLibrary(book) {
     <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
     `;
    
-  let statusBtn = tableRow.querySelector('.toggle-btn');
-  statusBtn.addEventListener('click',(e)=>{
-    let btn = e.target;
+  const statusBtn = tableRow.querySelector('.toggle-btn');
+  statusBtn.addEventListener('click', (e) => {
+    const btn = e.target;
     btn.classList.add('btn')
-    if (btn.innerHTML === "read"){
-      btn.innerHTML = "unread";
+    if (btn.innerHTML === 'read') {
+      btn.innerHTML = 'unread';
      
       btn.classList.add('btn-info')
     } else {
-      btn.innerHTML = "read";
-      btn.classList.remove('btn-info')
-      btn.classList.add('btn-success')
+      btn.innerHTML = 'read';
+      btn.classList.remove('btn-info');
+      btn.classList.add('btn-success');
     }
   });
    bookDetails.appendChild(tableRow);
