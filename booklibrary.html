@@ -15,7 +15,7 @@
 <body>
     
     <div class="container mt-4">
-        <!-- <button id="toggle-btn" onclick="toggle();">Read</button> -->
+         <!-- <button id="toggle-btn" onclick="toggle();">Read</button>  -->
         <h1 class="display-4 text-center text-primary">Books Library</h1>
         <button href="#" id="add-new-book" class="btn btn-outline-primary"><i class="fas fa-plus"></i>     Add New Book</button>
     <div class="header-container">
@@ -33,9 +33,18 @@
             </div>
             <div class="form-control">
                 <label for="pages">No of Pages</label>
-                <input type="pages" id="pages">
+                <input type="number" id="pages">
                 <small class="small-error">Error message</small>
             </div>
+            <div class="form-control">
+                <label>Status</label>
+                <select id="status">
+                    <option value="Unread">Unread</option>
+                    <option value="Read">Read</option>
+                </select>
+                
+            </div>
+            
             <button type="submit"  id="btn" class="btn btn-primary">Add book</button>
            
         </form>

@@ -13,7 +13,7 @@ body {
 .header-container {
   display: none;
   flex-direction: column;
-  height: 36vh;
+  height: 49vh;
   background-size: cover;
 }
 

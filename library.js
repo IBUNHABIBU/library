@@ -1,49 +1,53 @@
-
+let myLibrary = [];
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
-const status = document.getElementById('status-btn');
+const status = document.getElementById('status');
 class Book {
   constructor(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.status = false;
+    this.status = status;
   }
 }
-
-// let clicked = false;
-// function toggle() {
-//   if (!clicked) {
-//     clicked = true;
-//     document.getElementById('toggle-btn').innerHTML = 'unread';
-//   } else {
-//     clicked = false;
-//     document.getElementById('toggle-btn').innerHTML = 'read';
-//   }
-// }
 
 function addBookToLibrary(book) {
   const bookDetails = document.getElementById('book-details');
   const tableRow = document.createElement('tr');
-  tableRow.innerHTML = `
-                                <td>${book.title}</td>
-                                <td>${book.author}</td>
-                                <td>${book.pages}</td>
-                            
-                                <td>
-                                <button id="toggle-btn" onclick="toggle();">Read</button>
-                                </td>
-    
-        
-                                
-                                <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
-        `;
-  bookDetails.appendChild(tableRow);
-}
+  let resultBtn = `<button >${book.status.value}</button>`
 
+    tableRow.innerHTML = `
+    <td>${book.title}</td>
+    <td>${book.author}</td>
+    <td>${book.pages}</td>
+    <td>
+      ${resultBtn}
+    </td>
+    <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
+    `;
+   
+  let statusBtn = tableRow.querySelector('.toggle-btn');
+  statusBtn.addEventListener('click',(e)=>{
+    let btn = e.target;
+    if (btn.innerHTML === "read"){
+      btn.innerHTML = "unread";
+
+    } else {
+      btn.innerHTML = "read";
+    }
+  });
+   bookDetails.appendChild(tableRow);
+  function readStatusMethod(){
+    console.log("Hello");
+  }
+}
+ function changeStatus(btn){
+  
+  console.log(btn);
+ }
 function getBooks() {
-  const myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
+  myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
   return myLibrary;
 }
 
@@ -130,10 +134,13 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
   const bookTitle = title.value;
   const bookAuthor = author.value;
   const bookPages = pages.value;
+  const bookStatus = status.value;
+  
   if (bookTitle.trim() === '' || bookAuthor.trim() === '' || bookPages.trim() === '') {
     checkRequired([title, author, pages]);
   } else {
-    const book = new Book(bookTitle, bookAuthor, bookPages, status);
+    const book = new Book(bookTitle, bookAuthor, bookPages, bookStatus);
+    // console.log(book);
     addBookToLibrary(book);
     showAlert('Book added to the list', 'success');
     addBook(book);
