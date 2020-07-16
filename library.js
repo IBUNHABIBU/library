@@ -15,8 +15,6 @@ class Book {
 function addBookToLibrary(book) {
   const bookDetails = document.getElementById('book-details');
   const tableRow = document.createElement('tr');
-  // let resultBtn = `<button class="toggle-btn">${book.status.value}</button>`
-
     tableRow.innerHTML = `
     <td>${book.title}</td>
     <td>${book.author}</td>
@@ -30,7 +28,6 @@ function addBookToLibrary(book) {
   let statusBtn = tableRow.querySelector('.toggle-btn');
   statusBtn.addEventListener('click',(e)=>{
     let btn = e.target;
-    // console.log(btn);
     btn.classList.add('btn')
     if (btn.innerHTML === "read"){
       btn.innerHTML = "unread";
@@ -151,10 +148,8 @@ document.getElementById('book-details').addEventListener('click', (e) => {
   deleteBook(e.target);
   removeBook(e.target.parentElement.previousElementSibling.textContent);
   showAlert('Book Removed From the list', 'danger');
-  // console.log(e.target);
 });
 
-// pop up form
 document.getElementById('add-new-book').addEventListener('click', () => {
   document.querySelector('.header-container').style.display = 'flex';
   document.querySelector('#add-new-book').style.display = 'none';
