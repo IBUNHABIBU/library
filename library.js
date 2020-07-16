@@ -15,14 +15,14 @@ class Book {
 function addBookToLibrary(book) {
   const bookDetails = document.getElementById('book-details');
   const tableRow = document.createElement('tr');
-  let resultBtn = `<button >${book.status.value}</button>`
+  // let resultBtn = `<button class="toggle-btn">${book.status.value}</button>`
 
     tableRow.innerHTML = `
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.pages}</td>
     <td>
-      ${resultBtn}
+    <button class="toggle-btn">${book.status.value}</button>
     </td>
     <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
     `;
@@ -30,22 +30,22 @@ function addBookToLibrary(book) {
   let statusBtn = tableRow.querySelector('.toggle-btn');
   statusBtn.addEventListener('click',(e)=>{
     let btn = e.target;
+    // console.log(btn);
+    btn.classList.add('btn')
     if (btn.innerHTML === "read"){
       btn.innerHTML = "unread";
-
+     
+      btn.classList.add('btn-info')
     } else {
       btn.innerHTML = "read";
+      btn.classList.remove('btn-info')
+      btn.classList.add('btn-success')
     }
   });
    bookDetails.appendChild(tableRow);
-  function readStatusMethod(){
-    console.log("Hello");
-  }
-}
- function changeStatus(btn){
   
-  console.log(btn);
- }
+}
+ 
 function getBooks() {
   myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
   return myLibrary;
@@ -140,7 +140,6 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
     checkRequired([title, author, pages]);
   } else {
     const book = new Book(bookTitle, bookAuthor, bookPages, bookStatus);
-    // console.log(book);
     addBookToLibrary(book);
     showAlert('Book added to the list', 'success');
     addBook(book);
@@ -151,7 +150,8 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
 document.getElementById('book-details').addEventListener('click', (e) => {
   deleteBook(e.target);
   removeBook(e.target.parentElement.previousElementSibling.textContent);
-  showAlert('Book Removed From the list', 'success');
+  showAlert('Book Removed From the list', 'danger');
+  // console.log(e.target);
 });
 
 // pop up form
