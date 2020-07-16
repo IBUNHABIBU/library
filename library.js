@@ -15,7 +15,7 @@ class Book {
 function addBookToLibrary(book) {
   const bookDetails = document.getElementById('book-details');
   const tableRow = document.createElement('tr');
-    tableRow.innerHTML = `
+  tableRow.innerHTML = `
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.pages}</td>
@@ -24,11 +24,10 @@ function addBookToLibrary(book) {
     </td>
     <td><a href="#" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i>  Delete Book</a></td>
     `;
-   
   const statusBtn = tableRow.querySelector('.toggle-btn');
   statusBtn.addEventListener('click', (e) => {
     const btn = e.target;
-    btn.classList.add('btn')
+    btn.classList.add('btn');
     if (btn.innerHTML === 'read') {
       btn.innerHTML = 'unread';
       btn.classList.add('btn-info');
@@ -40,7 +39,7 @@ function addBookToLibrary(book) {
   });
   bookDetails.appendChild(tableRow);
 }
- 
+
 function getBooks() {
   myLibrary = localStorage.getItem('myLibrary') === null ? [] : JSON.parse(localStorage.getItem('myLibrary'));
   return myLibrary;
@@ -130,7 +129,6 @@ document.getElementById('book-form').addEventListener('submit', (e) => {
   const bookAuthor = author.value;
   const bookPages = pages.value;
   const bookStatus = status.value;
-  
   if (bookTitle.trim() === '' || bookAuthor.trim() === '' || bookPages.trim() === '') {
     checkRequired([title, author, pages]);
   } else {
