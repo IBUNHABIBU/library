@@ -31,16 +31,14 @@ function addBookToLibrary(book) {
     btn.classList.add('btn')
     if (btn.innerHTML === 'read') {
       btn.innerHTML = 'unread';
-     
-      btn.classList.add('btn-info')
+      btn.classList.add('btn-info');
     } else {
       btn.innerHTML = 'read';
       btn.classList.remove('btn-info');
       btn.classList.add('btn-success');
     }
   });
-   bookDetails.appendChild(tableRow);
-  
+  bookDetails.appendChild(tableRow);
 }
  
 function getBooks() {
