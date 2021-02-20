@@ -14,6 +14,16 @@
   <h2 align="center"> BOOKS LYBRARY</h2>
   <h3 align="center">Is the booklist Javascript  quez to implement object oriented programming using class.</h3>
 
+
+  <p align="center">
+    <a href="https://github.com/IBUNHABIBU/tic-tac-toe-game/issues">Report Bug</a>
+    · 
+    <a href="https://github.com/IBUNHABIBU/tic-tac-toe-game/issues">Request Feature</a>
+  </p>
+</p>
+
+
+
 ![screenshot](https://github.com/IBUNHABIBU/library/blob/feature/Asset/Images/form.PNG)
 ![screenshot](https://github.com/IBUNHABIBU/library/blob/feature/Asset/Images/homepage.PNG)
 
